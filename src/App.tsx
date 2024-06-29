@@ -1,10 +1,15 @@
 import { useState } from 'react'
-
+import { pixelateImage } from './ImageConversion.tsx'
 
 export default function App() {
+  
+  const testImagePath = '../public/gamboy.png'
+
+  pixelateImage(testImagePath, 960, 960, 1080);
+
   return (
-    <h1 className="text-2xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+      <div className=' text-lg font-bold'>GameBoy Camera Converter</div>
+    </>
   )
 }

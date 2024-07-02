@@ -42,9 +42,7 @@ function pixelateImage(originalImage: string, centerX: number, centerY: number, 
             context.fillRect(x, y, pixelationFactor, pixelationFactor)
         }
     }
-    if ( extraPixel ) {
-        const  lastPixelIndex
-    }
+
     originalImage.src = canvas.toDataURL();
 }
 

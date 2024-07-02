@@ -21,21 +21,15 @@ function pixelateImage(originalImage: string, centerX: number, centerY: number, 
     // getImageData returns an ImageData object representing pixel data of the selected canvas. the .data attribute returns an Uint8ClampedArray of pixels
     const originalImageData = context.getImageData(originalImage, 0, 0, edgeLength, edgeLength).data
 
-    let pixelationFactor = 0;
+    const pixelationFactor = Math.floor(edgeLength / 128);
     let extraPixel = false;
-    if (edgeLength % 128 !== 0) {
-        pixelationFactor = Math.floor(edgeLength / 128);
-        extraPixel = true;
-    } else {
-        pixelationFactor = edgeLength / 128;
-    }
 
     // each iteration represents drawing of each of the 128 pixels 
     for (let x = 0; x < 128; x += 1) {
         for (let y = 0; y < 128; y += 1) {
             
-            // calculates the index in the originalImageData array that represents the current pixel
-            const pixelIndex = (x + y * edgeLength) * 4;
+            // calculates the index in the originalImageData array that represents the current pixel: ((x * pixelationFactor) + (y * pixelationFactor * edgeLength)) * 4;
+            const pixelIndex = 4 * pixelationFactor * (x + y * edgeLength);
 
             // context.fillStyle sets the color for the context. assigned to the currently-iterated pixel
             context.fillStyle(`rgba(

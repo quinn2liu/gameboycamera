@@ -6,23 +6,22 @@
  * @param {number} centerY
  * @param {number} edgeLength
  */
-function pixelateImage(originalImage: string, centerX: number, centerY: number, edgeLength: number) {
-    const canvas = document.createElement('canvas')
+function pixelateImage(originalImage: HTMLImageElement, centerX: number, centerY: number, edgeLength: number) {
+    const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
     if (!context) {
-        throw new Error('Failed to get 2d context')
+        throw new Error('Failed to get 2d context');
     }
 
     // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
     // cropping the original image by drawing it with new dimensions onto the canvas
-    context.drawImage(originalImage, centerX - (edgeLength / 2), centerY - (edgeLength / 2), edgeLength, edgeLength, edgeLength, edgeLength)
+    context.drawImage(originalImage, centerX - (edgeLength / 2), centerY - (edgeLength / 2), edgeLength, edgeLength, 0, 0, edgeLength, edgeLength);
 
     // getImageData returns an ImageData object representing pixel data of the selected canvas. the .data attribute returns an Uint8ClampedArray of pixels
-    const originalImageData = context.getImageData(originalImage, 0, 0, edgeLength, edgeLength).data
+    const originalImageData = context.getImageData(0, 0, edgeLength, edgeLength).data;
 
     const pixelationFactor = Math.floor(edgeLength / 128);
-    let extraPixel = false;
 
     // each iteration represents drawing of each of the 128 pixels 
     for (let x = 0; x < 128; x += 1) {
@@ -32,19 +31,19 @@ function pixelateImage(originalImage: string, centerX: number, centerY: number, 
             const pixelIndex = 4 * pixelationFactor * (x + y * edgeLength);
 
             // context.fillStyle sets the color for the context. assigned to the currently-iterated pixel
-            context.fillStyle(`rgba(
+            context.fillStyle = `rgba(
                 ${originalImageData[pixelIndex]},
                 ${originalImageData[pixelIndex + 1]},
                 ${originalImageData[pixelIndex + 2]},
                 ${originalImageData[pixelIndex + 3]},
-            )`)
+            )`;
             // fillRect(x, y, width, height)
-            context.fillRect(x, y, pixelationFactor, pixelationFactor)
+            context.fillRect(x, y, pixelationFactor, pixelationFactor);
         }
     }
 
     originalImage.src = canvas.toDataURL();
-}
+  }
 
 /**
  * Description placeholder

@@ -4,7 +4,9 @@ Project Tasks/Landmarks
 
 Core Functionality
 
-1. Crop Image
+1. ~~Crop Image~~
+    
+    - ACTUALLY LOOK INTO HOW ASYNC/AWAIT AND PROMISES WORK
 
 2. Pixelate Image
 
@@ -14,6 +16,10 @@ Core Functionality
 
 Extra Features
 
-1. Mobile Version
+1. GUI for cropping (able to drag to get the center crop coordinates)
 
-2. Camera Preview
+2. Live preview of the gameboy-ification
+
+3. Mobile Version
+
+4. Camera Preview

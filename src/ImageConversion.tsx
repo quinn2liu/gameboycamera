@@ -6,7 +6,8 @@
  * @param {number} centerY
  * @param {number} edgeLength
  */
-function pixelateImage(originalImage: HTMLImageElement, centerX: number, centerY: number, edgeLength: number) {
+// originalImage, centerX = 600, centerY = 337, edgeLength = 675
+const pixelateImage = (originalImage: HTMLImageElement, centerX: number, centerY: number, edgeLength: number): HTMLImageElement => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
@@ -16,7 +17,8 @@ function pixelateImage(originalImage: HTMLImageElement, centerX: number, centerY
 
     // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
     // cropping the original image by drawing it with new dimensions onto the canvas
-    context.drawImage(originalImage, centerX - (edgeLength / 2), centerY - (edgeLength / 2), edgeLength, edgeLength, 0, 0, edgeLength, edgeLength);
+    context.drawImage(originalImage, centerX - (Math.floor((edgeLength / 2)), centerY - (Math.floor((edgeLength / 2)), edgeLength, edgeLength, 0, 0, edgeLength, edgeLength);
+    
 
     // getImageData returns an ImageData object representing pixel data of the selected canvas. the .data attribute returns an Uint8ClampedArray of pixels
     const originalImageData = context.getImageData(0, 0, edgeLength, edgeLength).data;
@@ -41,10 +43,11 @@ function pixelateImage(originalImage: HTMLImageElement, centerX: number, centerY
             context.fillRect(x, y, pixelationFactor, pixelationFactor);
         }
     }
-
-    originalImage.src = canvas.toDataURL();
-  }
-
+    const pixelatedImageURL = canvas.toDataURL();
+    const pixelatedImageElement = new Image();
+    pixelatedImageElement.src = pixelatedImageURL;
+    return pixelatedImageElement;
+}
 /**
  * Description placeholder
  */

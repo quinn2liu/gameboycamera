@@ -18,11 +18,6 @@ const pixelateImage = (croppedImage: HTMLImageElement, edgeLength: number): Prom
         if (!context) {
             throw new Error('Failed to get 2d context');
         }
-
-        const pixelationFactor = Math.floor(edgeLength / 128);
-
-        console.log(pixelationFactor);
-
         croppedImage.onload = () => {
             try {
                 // redrawing the croppedImage on a canvas to extract data

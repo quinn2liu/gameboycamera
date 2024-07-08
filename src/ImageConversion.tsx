@@ -28,7 +28,7 @@ const pixelateImage = (croppedImage: HTMLImageElement, edgeLength: number): Prom
                 // redrawing the croppedImage on a canvas to extract data
                 context.drawImage(croppedImage, 0, 0);
                 const croppedImageData = context.getImageData(0, 0, edgeLength, edgeLength).data;
-                const pixelationFactor = Math.floor(edgeLength / 128);
+                const pixelationFactor = Math.ceil(edgeLength / 128);
                 // each iteration represents drawing of each of the 128 pixels 
                 for (let y = 0; y < 128; y += 1) {
                     for (let x = 0; x < 128; x += 1) {

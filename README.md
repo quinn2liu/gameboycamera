@@ -6,9 +6,7 @@ Core Functionality
 
 1. ~~Crop Image~~
     
-    - ACTUALLY LOOK INTO HOW ASYNC/AWAIT AND PROMISES WORK
-
-2. Pixelate Image
+2. ~~Pixelate Image~~
 
 3. Quantize Image Colors
 

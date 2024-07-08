@@ -8,13 +8,7 @@ export default function App() {
     try {
       const originalImage = new Image();
       originalImage.src = demoFilePath;
-
       const croppedImageElement = await cropImage(originalImage, 600, 337, 675);
-      // const croppedTag = document.getElementById('croppedTag');
-      // if (croppedTag) {
-      //   croppedTag.src = croppedImageElement.src;
-      // }
-
       const pixelatedImageElement = await pixelateImage(croppedImageElement, 675);
       const pixelatedTag = document.getElementById('pixelatedTag');
       if (pixelatedTag) {
